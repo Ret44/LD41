@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f3e00998ff874da53442d595b60a6, type: 3}
   m_Name: Debug-GreenTile
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  color: {r: 0, g: 1, b: 0.048275948, a: 1}
+  sprite: {fileID: 21300000, guid: edb3b7c2564c4264588f251b55c4435f, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
