@@ -17,6 +17,7 @@ public class MainMenuController : MonoBehaviour {
 
     public RectTransform stripe;
     public RectTransform logo;
+    public RectTransform credits;
 
     bool isCreditsOn = false;
     bool isGameStarted = false;
@@ -62,7 +63,7 @@ public class MainMenuController : MonoBehaviour {
                     case MainMenuOption.Credits:
                         FadeMenu(false);
                         isCreditsOn = true;
-                        // credits on
+                        credits.GetComponent<Text>().DOFade(1f, 1f);
                         break;
                     case MainMenuOption.Quit:
                         Application.Quit();
@@ -71,6 +72,12 @@ public class MainMenuController : MonoBehaviour {
             }
 
             SetOption((int)current);
+        } else if (isCreditsOn && !isGameStarted) {
+            if (Input.anyKeyDown) {
+                credits.GetComponent<Text>().DOFade(0f, 1f);
+                isCreditsOn = false;
+                FadeMenu(true);
+            }
         }
     }
 
