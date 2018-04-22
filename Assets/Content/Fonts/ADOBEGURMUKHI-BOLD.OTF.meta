@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f8335d655c9bece439cfcb73a0646e1c
+timeCreated: 1524426093
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Adobe Gurmukhi
+  fontNames:
+  - Adobe Gurmukhi
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
