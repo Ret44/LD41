@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ef8615ff84c444cb173fe4bfd6b0bd, type: 3}
   m_Name: Tower-Ares
   m_EditorClassIdentifier: 
+  ammoType: {fileID: 11400000, guid: 29bfca7c22e29694a81cde78981acbb8, type: 2}
   towerSprite: {fileID: 0}
   damage: 5
   radius: 0

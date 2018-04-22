@@ -179,8 +179,8 @@ public class Match3 : MonoBehaviour {
 
         for(int i=0;i<removeList.Count;i++)
         {
-            removeList[i].Destroy();
-            ptsCount++;
+            Core.Ammo[removeList[i].tileType].AddValue(1);
+            removeList[i].Destroy();            
         }
         instance.DropDownTiles();
     }

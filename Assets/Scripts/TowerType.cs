@@ -4,7 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "towerType", menuName = "Tower type")]
 public class TowerType : ScriptableObject {
-    
+
+    public TileType ammoType;
+
     public Sprite towerSprite;
     public int damage;
 

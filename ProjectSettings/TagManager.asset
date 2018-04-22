@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TileBackground
+    uniqueID: 4144480529
+    locked: 0
+  - name: Tile
+    uniqueID: 865240083
+    locked: 0
+  - name: TowerDefBackground
+    uniqueID: 658689553
+    locked: 0
+  - name: Tower
+    uniqueID: 2278105881
+    locked: 0
+  - name: TowerEnemy
+    uniqueID: 3032046835
+    locked: 0

@@ -119,10 +119,14 @@ public class TowerBase : MonoBehaviour {
                   shootTimer -= Time.deltaTime;
                   if(shootTimer <= 0)
                   {
-                      shootTimer = _towerType.shootingDelay;
-                      SetNearestTarget();
-                      if(_target!=null) 
-                         _animator.SetTrigger("fire");
+                      if (Core.Ammo[_towerType.ammoType].value > 0)
+                      {
+                          Core.Ammo[_towerType.ammoType].AddValue(-1);
+                          shootTimer = _towerType.shootingDelay;
+                          SetNearestTarget();
+                          if (_target != null)
+                              _animator.SetTrigger("fire");
+                      }
                   }
             }
         }
