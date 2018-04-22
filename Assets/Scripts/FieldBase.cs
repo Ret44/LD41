@@ -24,6 +24,10 @@ public class FieldBase : MonoBehaviour {
         get { return nextPath != null; }
     }
 
+    public void Awake()
+    {
+        TowerDef.RegisterField(this);
+    }
 
 #if UNITY_EDITOR
     public void OnDrawGizmos()

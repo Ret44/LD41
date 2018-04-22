@@ -90,11 +90,13 @@ public class Match3 : MonoBehaviour {
                 GameObject bckObj = Instantiate(instance._backgroundPrefab) as GameObject;
                 bckObj.name = string.Format("Bck[{0},{1}]", x, y);
                 bckObj.transform.parent = instance.transform;
+                bckObj.transform.localScale = Vector3.one;
                 bckObj.transform.localPosition = new Vector2((0 - instance._gridSize.x / 2) + (x), (0 - instance._gridSize.y / 2) + (y));
                 instance._backgroundGrid[x, y] = bckObj.GetComponent<SpriteRenderer>();
                 GameObject tileObj = Instantiate(instance._tilePrefab) as GameObject;
                 tileObj.name = string.Format("Tile[{0},{1}]", x, y);
                 tileObj.transform.parent = instance.transform;
+                tileObj.transform.localScale = Vector3.one;
                 tileObj.transform.localPosition = new Vector2((0 - instance._gridSize.x / 2) + (x), (0 - instance._gridSize.y / 2) + (y));
                 TileBase tile = tileObj.GetComponent<TileBase>();
                 tile.Setup(instance._types[Random.Range(0,instance._types.Length)]);
@@ -230,6 +232,7 @@ public class Match3 : MonoBehaviour {
         GameObject tileObj = Instantiate(instance._tilePrefab) as GameObject;
         tileObj.name = string.Format("Tile[{0},{1}]", gridPosition.x, gridPosition.y);
         tileObj.transform.parent = instance.transform;
+        tileObj.transform.localScale = Vector3.one;
         tileObj.transform.localPosition = new Vector2((0 - instance._gridSize.x / 2) + (gridPosition.x), (0 - instance._gridSize.y / 2) + (gridPosition.y));
         TileBase tile = tileObj.GetComponent<TileBase>();
         tile.Setup(instance._types[Random.Range(0, instance._types.Length)]);
@@ -264,6 +267,7 @@ public class Match3 : MonoBehaviour {
                         GameObject tileObj = Instantiate(instance._tilePrefab) as GameObject;
                         tileObj.name = string.Format("Tile[{0},{1}]", x, y);
                         tileObj.transform.parent = instance.transform;
+                        tileObj.transform.localScale = Vector3.one;
                         tileObj.transform.localPosition = new Vector2((0 - instance._gridSize.x / 2) + (x), (0 - instance._gridSize.y / 2) + (y));
                         TileBase tile = tileObj.GetComponent<TileBase>();
                         tile.Setup(instance._types[Random.Range(0, instance._types.Length)]);

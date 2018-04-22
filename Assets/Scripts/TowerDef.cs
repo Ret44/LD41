@@ -34,11 +34,32 @@ public class TowerDef : MonoBehaviour {
     [SerializeField]
     private GameObject _enemyPrefab;
 
+
+    [SerializeField]
+    private FieldBase[,] _grid;
+
+    [SerializeField]
+    private List<TowerBase> _towers;
+
+    public static Vector3 GetWorldPosition(Vector2 gridLocation)
+    {
+        return GetWorldPosition((int)gridLocation.x, (int)gridLocation.y);
+    }
+
+    public static Vector3 GetWorldPosition(int x, int y)
+    {
+        return instance._grid[x, y].transform.position;
+    }
+    public static void RegisterField(FieldBase field)
+    {
+        instance._grid[(int)field.gridLocation.x, (int)field.gridLocation.y] = field;
+    }
+
     public static void GenerateNewWave(int level)
     {
         instance._currentWave = new EnemyWave();
         instance._currentWave.enemyCount = level * 15;
-        instance._currentWave.delayBetweenSpawn = 1f;
+        instance._currentWave.delayBetweenSpawn = 4f;
     }
 
 #if UNITY_EDITOR
@@ -59,11 +80,25 @@ public class TowerDef : MonoBehaviour {
                 Gizmos.DrawLine(_aliveEnemies[i].transform.position, _aliveEnemies[i].transform.position - _aliveEnemies[i].movementOffset);
             }
         }
+        if(_towers != null)
+        {        
+            for(int i = 0; i < _towers.Count; i++)
+            {
+                if (_towers[i].target != null)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(_towers[i].transform.position, _towers[i].target.transform.position);
+                }
+                Gizmos.color = new Color(1f, 1f, 1f, 0.25f);
+                Gizmos.DrawSphere(transform.position, _towers[i].radius);
+            }
+        }
     }   
 #endif
     public void Awake()
     {
         instance = this;
+        _grid = new FieldBase[8, 8];
     }
 
     public static void AddEnemy(EnemyBase enemy)
@@ -76,6 +111,8 @@ public class TowerDef : MonoBehaviour {
     {
         GameObject enemyObj = Instantiate(instance._enemyPrefab) as GameObject;
         enemyObj.name = "Enemy";
+        enemyObj.transform.parent = instance.transform;
+        enemyObj.transform.localScale = Vector3.one;
         EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
         AddEnemy(enemy);
         enemy.Setup();
