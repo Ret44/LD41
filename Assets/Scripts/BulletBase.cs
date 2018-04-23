@@ -25,11 +25,13 @@ public class BulletBase : MonoBehaviour {
 
     public void Update()
     {
-        if(target!=null)
+        if (target != null)
         {
             transform.up = (target.transform.position - transform.position).normalized;
             transform.Translate(transform.up * velocity * Time.deltaTime);
         }
+        else
+            Destroy(this.gameObject);
         _renderer.sortingOrder = (int)(transform.position.y * 1000);
     }
 }

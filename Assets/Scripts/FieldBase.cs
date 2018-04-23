@@ -26,8 +26,21 @@ public class FieldBase : MonoBehaviour {
 
     public void Awake()
     {
-        TowerDef.RegisterField(this);
+        if(fieldType != FieldType.PathEnd && fieldType != FieldType.PathStart)
+            TowerDef.RegisterField(this);
     }
+
+    public void OnMouseOver()
+    {
+        TowerDef.instance.mouseGridPosition = gridLocation;
+    }
+
+    //public void OnMouseExit()
+    //{
+    //    TowerDef.instance.mouseGridPosition = new Vector2(-1, -1);
+    //}
+
+
 
 #if UNITY_EDITOR
     public void OnDrawGizmos()

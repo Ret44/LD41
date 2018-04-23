@@ -7,11 +7,11 @@ public class TowerBase : MonoBehaviour {
     [SerializeField]
     private TowerType _towerType;
 
-    [SerializeField]
-    private SpriteRenderer _renderer;
+    public bool isBuilding = true;
 
-    [SerializeField]
-    private Animator _animator;
+    public SpriteRenderer spriteRenderer;
+    
+    public Animator animator;
 
     [SerializeField]
     private List<EnemyBase> _nearbyEnemies;
@@ -45,11 +45,10 @@ public class TowerBase : MonoBehaviour {
         }
     }
 
-    public void Setup(TowerType type, Vector2 position)
+    public void Setup(TowerType type)
     {
         _towerType = type;
-        _renderer.sprite = type.towerSprite;
-        
+        spriteRenderer.sprite = type.towerSprite;        
     }
     
     public void OnTriggerEnter(Collider other)
@@ -125,11 +124,11 @@ public class TowerBase : MonoBehaviour {
                           shootTimer = _towerType.shootingDelay;
                           SetNearestTarget();
                           if (_target != null)
-                              _animator.SetTrigger("fire");
+                              animator.SetTrigger("fire");
                       }
                   }
             }
         }
-        _renderer.sortingOrder = (int)(transform.position.y * -1000);
+        spriteRenderer.sortingOrder = (int)(transform.position.y * -1000);
 	}
 }

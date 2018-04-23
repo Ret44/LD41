@@ -22,6 +22,10 @@ public class TowerDef : MonoBehaviour {
     public FieldBase pathStart;
     public FieldBase pathEnd;
 
+    public TowerBase nowBuilding = null;
+
+    public Vector2 mouseGridPosition;
+
     [SerializeField]
     private float _waveTimer;
 
@@ -34,12 +38,31 @@ public class TowerDef : MonoBehaviour {
     [SerializeField]
     private GameObject _enemyPrefab;
 
+    [SerializeField]
+    private GameObject _towerPrefab;
 
     [SerializeField]
     private FieldBase[,] _grid;
 
     [SerializeField]
     private List<TowerBase> _towers;
+
+
+    [SerializeField]
+    private TileType _buildCurrency;
+
+    public static int Cash
+    {
+        get
+        {
+            return Core.Ammo[instance._buildCurrency].value;
+        }
+        set
+        {
+            Core.Ammo[instance._buildCurrency].SetValue(value);
+        }
+    }
+
 
     public static Vector3 GetWorldPosition(Vector2 gridLocation)
     {
@@ -123,6 +146,35 @@ public class TowerDef : MonoBehaviour {
         instance._aliveEnemies.Remove(enemy);
     }
 
+    public void BuildNewTower(TowerType type)
+    {
+        if (nowBuilding == null)
+        {
+            if (Cash >= 25)
+            {
+                Cash -= 25;
+                GameObject towerObj = Instantiate(instance._towerPrefab);
+                towerObj.transform.parent = transform;
+                towerObj.transform.localScale = Vector3.one;
+                TowerBase tower = towerObj.GetComponent<TowerBase>();
+                tower.Setup(type);
+                nowBuilding = tower;
+            }
+        }
+    }
+
+    public void PlaceNewTower()
+    {
+        if(nowBuilding!=null)
+        {
+            nowBuilding.spriteRenderer.color = Color.white;
+            nowBuilding.animator.SetTrigger("build");
+            nowBuilding.isBuilding = false;
+            _grid[(int)mouseGridPosition.x, (int)mouseGridPosition.y].fieldType = FieldBase.FieldType.NotBuildable;            
+            nowBuilding = null;
+        }
+    }
+
     public void Update()
     {
         if (phase == Phase.Defending)
@@ -137,6 +189,28 @@ public class TowerDef : MonoBehaviour {
                 _waveTimer = _currentWave.delayBetweenSpawn - Random.Range(0f, 0.5f);
                 _currentWave.enemyCount--;
                 AddEnemy();
+            }
+        }
+
+        if(nowBuilding!=null)
+        {
+            nowBuilding.transform.position = GetWorldPosition(mouseGridPosition);
+            if(_grid[(int)mouseGridPosition.x, (int)mouseGridPosition.y].fieldType == FieldBase.FieldType.Buildable)
+            {
+                nowBuilding.spriteRenderer.color = Color.green;
+                if(Input.GetMouseButton(0))
+                {
+                    PlaceNewTower();
+                }               
+            }
+            else
+            {
+                nowBuilding.spriteRenderer.color = Color.red;
+            }
+            if (Input.GetMouseButton(1))
+            {
+                Destroy(nowBuilding.gameObject);
+                Cash += 25;
             }
         }
     }

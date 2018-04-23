@@ -17,6 +17,8 @@ public class EnemyBase : MonoBehaviour {
 
     [SerializeField]
     private SpriteRenderer renderer;
+    [SerializeField]
+    private SpriteRenderer shadowRenderer;
 
     [SerializeField]
     private Animator _animator;
@@ -66,7 +68,10 @@ public class EnemyBase : MonoBehaviour {
             MoveTo(targetField);
         }
         else
+        {
+            Core.TriggerZeus();
             Destroy(this.gameObject);
+        }
     }
 
     public void OnDestroy()
@@ -78,5 +83,6 @@ public class EnemyBase : MonoBehaviour {
     public void Update()
     {
         renderer.sortingOrder = (int)(transform.position.y * -1000);
+        shadowRenderer.sortingOrder = renderer.sortingOrder -1;
     }
 }

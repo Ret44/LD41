@@ -22,6 +22,12 @@ public class Ammo
         if (counter != null) counter.text = value.ToString();
         return true;
     }
+
+    public void SetValue(int val)
+    {
+        value = val;
+        if (counter != null) counter.text = value.ToString();
+    }
 }
 
 public class Core : MonoBehaviour {
@@ -29,6 +35,8 @@ public class Core : MonoBehaviour {
     public static Core instance;
     public int Coins;
     public Ammo[] ammoValues;
+
+    public Animator zeusAnimator;
 
     public static Dictionary<TileType, Ammo> Ammo;
 
@@ -46,6 +54,11 @@ public class Core : MonoBehaviour {
 	void Start () {
 		
 	}
+
+    public static void TriggerZeus()
+    {
+        instance.zeusAnimator.SetTrigger("hit");
+    }
 	
 	// Update is called once per frame
 	void Update () {
