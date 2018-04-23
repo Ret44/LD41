@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public enum MainMenuOption { Play, Credits, Quit }
@@ -21,6 +20,8 @@ public class MainMenuController : MonoBehaviour {
 
     bool isCreditsOn = false;
     bool isGameStarted = false;
+
+    public GameObject intro;
 
     void Start() {
         Sequence introSeq = DOTween.Sequence();
@@ -58,7 +59,7 @@ public class MainMenuController : MonoBehaviour {
                     case MainMenuOption.Play:
                         FadeMenu(false);
                         isGameStarted = true;
-                        // show story & howtoplay
+                        Instantiate(intro);
                         break;
                     case MainMenuOption.Credits:
                         FadeMenu(false);
