@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 223557989177792110}
   - component: {fileID: 114526520195175086}
   - component: {fileID: 114580556927452228}
+  - component: {fileID: 114279335437680702}
   m_Layer: 5
   m_Name: Intro
   m_TagString: Untagged
@@ -375,7 +376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1804642334767804
 GameObject:
   m_ObjectHideFlags: 1
@@ -676,6 +677,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: and gain mana of the god.
+--- !u!114 &114279335437680702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022698617878616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f51ab93f4fd2fb4cb7b32bdfe1e4af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skipText: {fileID: 0}
 --- !u!114 &114308836357045132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,7 +721,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: press Space to skip
+  m_Text: 'click = next
+
+    space = skip'
 --- !u!114 &114334691859377000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1740,10 +1755,10 @@ RectTransform:
   m_Father: {fileID: 224321226357847960}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6550675, y: -0.07128288}
-  m_AnchorMax: {x: 1.1713213, y: 0.14357476}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
-  m_SizeDelta: {x: 0, y: -0.000061035156}
+  m_AnchorMin: {x: 0.70957273, y: -0.10533704}
+  m_AnchorMax: {x: 1.1443161, y: 0.21210007}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224669053892345162
 RectTransform:
