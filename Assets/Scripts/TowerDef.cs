@@ -150,6 +150,7 @@ public class TowerDef : MonoBehaviour {
     {
         if (nowBuilding == null)
         {
+            SoundPlayer.PlaySound(Sound.Click, false);
             if (Cash >= 25)
             {
                 Cash -= 25;
@@ -167,6 +168,7 @@ public class TowerDef : MonoBehaviour {
     {
         if(nowBuilding!=null)
         {
+            SoundPlayer.PlaySound(Sound.PlaceTower, true);
             nowBuilding.spriteRenderer.color = Color.white;
             nowBuilding.animator.SetTrigger("build");
             nowBuilding.isBuilding = false;

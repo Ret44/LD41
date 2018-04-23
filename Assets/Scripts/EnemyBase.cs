@@ -50,12 +50,14 @@ public class EnemyBase : MonoBehaviour {
         HP -= dmg;
         if(HP<0)
         {
+            SoundPlayer.PlaySound(Sound.CyclopsDeath, true);
             transform.DOKill();
             isDying = true;
             _animator.SetTrigger("dead");
         }
         else
         {
+            SoundPlayer.PlaySound(Sound.CyclopsHit, true);
             _animator.SetTrigger("hit");
         }
     }

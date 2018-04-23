@@ -38,6 +38,10 @@ public class Core : MonoBehaviour {
 
     public Animator zeusAnimator;
 
+    public UnityEngine.UI.Image zeusHPFill;
+
+    public float zeusHP = 0.0f;
+
     public static Dictionary<TileType, Ammo> Ammo;
 
     void Awake()
@@ -52,12 +56,15 @@ public class Core : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        MusicPlayer.PlayTrack(MusicTrack.Defend, true);
 	}
 
     public static void TriggerZeus()
     {
+        SoundPlayer.PlaySound(Sound.ZeusHurt, true);
         instance.zeusAnimator.SetTrigger("hit");
+        instance.zeusHP += 0.2f;
+        instance.zeusHPFill.fillAmount = instance.zeusHP;
     }
 	
 	// Update is called once per frame
